@@ -24,7 +24,6 @@ public class MatrixOperations {
         if (m1.getM() != m2.getN())
             throw new IllegalArgumentException("Matrices have different dimensions");
 
-        ArrayList<Double> result = new ArrayList<>();
         List<Triple<Integer, Integer, Double>> valuesList = Collections.synchronizedList(new ArrayList<>());
         IntStream.range(0, m1.getN())
                 .parallel()
