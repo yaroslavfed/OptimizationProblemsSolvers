@@ -9,7 +9,7 @@ import java.util.stream.IntStream;
 public class MatrixImpl extends ArrayList<List<Double>> implements Matrix {
     private final int n;
     private final int m;
-    
+
     /**
      * Создает пустую матрицу
      */
@@ -72,9 +72,8 @@ public class MatrixImpl extends ArrayList<List<Double>> implements Matrix {
         StringBuilder result = new StringBuilder();
         IntStream.range(0, n).forEach(nIndex -> {
             result.append("|");
-            IntStream.range(0, m).forEach(mIndex -> {
-                result.append(this.get(nIndex).get(mIndex)).append(" ");
-            });
+            IntStream.range(0, m).forEach(mIndex ->
+                    result.append(this.get(nIndex).get(mIndex)).append(" "));
             result.replace(result.length() - 1, result.length(), "|\n");
         });
         return result.toString();
