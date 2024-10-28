@@ -1,7 +1,7 @@
 package com.application.core.configs;
 
-import com.application.models.vectors.Vector;
-import com.application.models.vectors.IVector;
+import com.application.models.vectors.VectorImpl;
+import com.application.models.vectors.io.Vector;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan
 public class ModelsConfig {
     @Bean
-    public IVector vector() {
-        return new Vector();
+    public Vector vector() {
+        return new VectorImpl();
     }
 }

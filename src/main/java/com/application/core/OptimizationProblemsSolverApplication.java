@@ -1,9 +1,9 @@
 package com.application.core;
 
-import com.application.functionals.io.IFunctional;
-import com.application.functions.io.IParametricFunction;
-import com.application.models.vectors.IVector;
-import com.application.optimizers.io.IOptimizer;
+import com.application.functionals.io.Functional;
+import com.application.functions.io.ParametricFunction;
+import com.application.models.vectors.io.Vector;
+import com.application.optimizers.io.Optimizer;
 import com.application.core.configs.AppConfig;
 import com.application.models.Point;
 import org.springframework.boot.SpringApplication;
@@ -21,10 +21,10 @@ public class OptimizationProblemsSolverApplication {
         ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
         SpringApplication.run(OptimizationProblemsSolverApplication.class, args);
 
-        IOptimizer monteCarlOptimizer = context.getBean("monteCarlOptimizer", IOptimizer.class);
-        IVector initialVector = context.getBean(IVector.class);
-        IFunctional functional = context.getBean("myFunctional", IFunctional.class);
-        IParametricFunction function = context.getBean("lineFunction", IParametricFunction.class);
+        Optimizer monteCarlOptimizer = context.getBean("monteCarlOptimizer", Optimizer.class);
+        Vector initialVector = context.getBean(Vector.class);
+        Functional functional = context.getBean("myFunctional", Functional.class);
+        ParametricFunction function = context.getBean("lineFunction", ParametricFunction.class);
 
         initialVector.add(1.0);
         initialVector.add(1.0);
