@@ -4,7 +4,6 @@ import com.application.models.matrices.MatrixImpl;
 import com.application.models.matrices.io.Matrix;
 import org.jetbrains.annotations.NotNull;
 
-
 import java.util.*;
 import java.util.stream.IntStream;
 
@@ -20,7 +19,7 @@ public class MatrixOperations {
      * @return матрицу - результат перемножения матриц
      */
     @NotNull
-    public static Matrix Multiply(@NotNull Matrix m1, @NotNull Matrix m2) {
+    public static Matrix multiply(@NotNull Matrix m1, @NotNull Matrix m2) {
         if (m1.getM() != m2.getN())
             throw new IllegalArgumentException("Matrices have different dimensions");
 

@@ -3,6 +3,7 @@ package com.application.models.vectors;
 import com.application.models.vectors.io.Vector;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class VectorImpl extends ArrayList<Double> implements Vector {
@@ -10,7 +11,11 @@ public class VectorImpl extends ArrayList<Double> implements Vector {
         super();
     }
 
-    public VectorImpl(ArrayList<Double> baseVector) {
+    public VectorImpl(int initialCapacity) {
+        super(initialCapacity);
+    }
+
+    public VectorImpl(List<Double> baseVector) {
         super(baseVector);
     }
 

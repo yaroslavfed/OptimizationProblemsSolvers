@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ComponentScan
 public class FunctionalsConfig {
-    @Bean(name = "myFunctional")
+    @Bean(name = "my-functional")
     public Functional myFunctional() {
         return new MyFunctionalImpl();
     }
