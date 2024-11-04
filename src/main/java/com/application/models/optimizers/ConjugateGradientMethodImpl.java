@@ -1,18 +1,20 @@
-package com.application.optimizers;
+package com.application.models.optimizers;
 
-import com.application.functionals.io.Functional;
-import com.application.functionals.io.LeastSquaresFunctional;
-import com.application.functions.io.ParametricFunction;
+import com.application.models.functionals.io.DifferentiableFunctional;
+import com.application.models.functionals.io.Functional;
+import com.application.models.functions.io.ParametricFunction;
 import com.application.models.vectors.io.Vector;
-import com.application.optimizers.io.Optimizer;
+import com.application.models.optimizers.io.Optimizer;
+import org.springframework.stereotype.Service;
 
-public class GaussNewtonAlgorithmImpl implements Optimizer {
-    private final LeastSquaresFunctional functional;
+@Service("conjugateGradientMethod")
+public class ConjugateGradientMethodImpl implements Optimizer {
+    private final DifferentiableFunctional functional;
 
-    public GaussNewtonAlgorithmImpl(LeastSquaresFunctional functional) {
+    public ConjugateGradientMethodImpl(DifferentiableFunctional functional) {
         this.functional = functional;
     }
-    
+
     @Override
     public int GetMaxIterations() {
         return 0;

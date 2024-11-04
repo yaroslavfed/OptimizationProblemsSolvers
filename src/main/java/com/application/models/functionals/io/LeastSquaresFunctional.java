@@ -1,7 +1,7 @@
-package com.application.functionals.io;
+package com.application.models.functionals.io;
 
 import com.application.models.matrices.io.Matrix;
-import com.application.functions.io.Function;
+import com.application.models.functions.io.Function;
 import com.application.models.vectors.io.Vector;
 
 public interface LeastSquaresFunctional extends Functional {

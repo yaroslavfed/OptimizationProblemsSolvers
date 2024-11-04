@@ -1,9 +1,10 @@
-package com.application.functions;
+package com.application.models.functions;
 
-import com.application.functions.io.Function;
-import com.application.functions.io.ParametricFunction;
+import com.application.models.functions.io.Function;
+import com.application.models.functions.io.ParametricFunction;
 import com.application.models.vectors.io.Vector;
 import org.jetbrains.annotations.NotNull;
+import org.springframework.stereotype.Component;
 
 /**
  * Вычисляет значение полиномиальной функции:
@@ -16,6 +17,7 @@ import org.jetbrains.annotations.NotNull;
  *   <li><code>x</code> - значение переменной, для которой вычисляется значение полинома.</li>
  * </ul>
  */
+@Component("polynomialFunction")
 public class PolynomialFunctionImpl implements ParametricFunction {
     @Override
     public Function bind(Vector parameters) {

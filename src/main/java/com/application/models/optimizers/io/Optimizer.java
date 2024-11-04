@@ -1,7 +1,7 @@
-package com.application.optimizers.io;
+package com.application.models.optimizers.io;
 
-import com.application.functionals.io.Functional;
-import com.application.functions.io.ParametricFunction;
+import com.application.models.functionals.io.Functional;
+import com.application.models.functions.io.ParametricFunction;
 import com.application.models.vectors.io.Vector;
 
 public interface Optimizer {

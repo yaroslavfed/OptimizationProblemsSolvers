@@ -1,13 +1,15 @@
-package com.application.functionals;
+package com.application.models.functionals;
 
-import com.application.functionals.io.Functional;
-import com.application.functions.io.Function;
-import com.application.models.Point;
+import com.application.models.functionals.io.Functional;
+import com.application.models.functions.io.Function;
+import com.application.dto.Point;
 import com.application.models.vectors.VectorImpl;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 
-public class MyFunctionalImpl implements Functional {
+@Component("functional")
+public class FunctionalImpl implements Functional {
     private ArrayList<Point> points;
 
     public ArrayList<Point> getPoints() {

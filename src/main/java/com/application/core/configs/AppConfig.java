@@ -5,10 +5,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 @Configuration
-@ComponentScan
-@Import({ModelsConfig.class,
-        FunctionsConfig.class,
-        FunctionalsConfig.class,
-        OptimizersConfig.class})
+@ComponentScan(basePackages = {"com.application.models", "com.application.services"})
 public class AppConfig {
 }
