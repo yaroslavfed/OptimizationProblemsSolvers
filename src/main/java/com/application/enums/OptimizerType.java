@@ -1,4 +1,4 @@
-package com.application.dto.enums;
+package com.application.enums;
 
 public enum OptimizerType {
     MONTE_CARLO_METHOD("monteCarloMethod"),

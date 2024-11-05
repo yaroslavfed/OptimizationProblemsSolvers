@@ -6,18 +6,6 @@ import com.application.models.vectors.io.Vector;
 
 public interface Optimizer {
     /**
-     * Получаем максимальное количество итераций
-     * @return максимальное количество итераций
-     */
-    int GetMaxIterations();
-
-    /**
-     * Устанавливаем максимальное количество итераций
-     * @param maxIterations максимальное количество итераций
-     */
-    void SetMaxIterations(int maxIterations);
-
-    /**
      * Оптимизация решения с помощью минимизации функционала
      * @param objective минимизируемый функционал
      * @param function параметрическая функция, функционал которой будем минимизировать

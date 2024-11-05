@@ -16,16 +16,6 @@ public class ConjugateGradientMethodImpl implements Optimizer {
     }
 
     @Override
-    public int GetMaxIterations() {
-        return 0;
-    }
-
-    @Override
-    public void SetMaxIterations(int maxIterations) {
-
-    }
-
-    @Override
     public Vector minimize(Functional objective, ParametricFunction function, Vector initialParameters) {
         return null;
     }

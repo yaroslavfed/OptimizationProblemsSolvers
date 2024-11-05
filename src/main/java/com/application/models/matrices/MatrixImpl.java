@@ -2,12 +2,14 @@ package com.application.models.matrices;
 
 import com.application.models.matrices.io.Matrix;
 import org.jetbrains.annotations.NotNull;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
 import java.util.stream.IntStream;
 
 @Component
+@Scope("prototype")
 public class MatrixImpl extends ArrayList<List<Double>> implements Matrix {
     private final int n;
     private final int m;

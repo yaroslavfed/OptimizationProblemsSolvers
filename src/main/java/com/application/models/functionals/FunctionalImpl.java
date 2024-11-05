@@ -12,10 +12,12 @@ import java.util.ArrayList;
 public class FunctionalImpl implements Functional {
     private ArrayList<Point> points;
 
+    @Override
     public ArrayList<Point> getPoints() {
         return points;
     }
 
+    @Override
     public void setPoints(ArrayList<Point> points) {
         this.points = points;
     }

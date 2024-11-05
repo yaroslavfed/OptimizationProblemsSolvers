@@ -1,6 +1,7 @@
 package com.application.models.vectors;
 
 import com.application.models.vectors.io.Vector;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 @Component
+@Scope("prototype")
 public class VectorImpl extends ArrayList<Double> implements Vector {
     public VectorImpl() {
         super();
@@ -27,7 +29,7 @@ public class VectorImpl extends ArrayList<Double> implements Vector {
     @Override
     public String toString() {
         return this.stream()
-                .map(item -> "|" + item + "|\n")
-                .collect(Collectors.joining());
+                .map(item -> "| " + item + " ")
+                .collect(Collectors.joining()).concat("|");
     }
 }
