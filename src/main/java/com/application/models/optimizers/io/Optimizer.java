@@ -14,7 +14,7 @@ public interface Optimizer {
      */
     Vector minimize(Functional objective,
                     ParametricFunction function,
-                    Vector initialParameters);
+                    Vector initialParameters) throws InterruptedException;
 
     /**
      * Оптимизация решения с помощью минимизации функционала
@@ -27,7 +27,7 @@ public interface Optimizer {
     Vector minimize(Functional objective,
                     ParametricFunction function,
                     Vector initialParameters,
-                    Vector minimumParameters);
+                    Vector minimumParameters) throws InterruptedException;
 
     /**
      * Оптимизация решения с помощью минимизации функционала
@@ -42,5 +42,5 @@ public interface Optimizer {
                     ParametricFunction function,
                     Vector initialParameters,
                     Vector minimumParameters,
-                    Vector maximumParameters);
+                    Vector maximumParameters) throws InterruptedException;
 }

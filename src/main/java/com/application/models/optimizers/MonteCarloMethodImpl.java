@@ -7,12 +7,12 @@ import com.application.models.functions.io.ParametricFunction;
 import com.application.models.vectors.io.Vector;
 import com.application.models.vectors.VectorImpl;
 import com.application.services.logger.Logger;
+import com.application.services.painter.PainterService;
 import org.jetbrains.annotations.NotNull;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import java.util.Random;
+import java.util.Collections;
 
 /**
  * <p>Универсальный метод оптимизации</p>
@@ -20,25 +20,26 @@ import java.util.Random;
  */
 @Service("monteCarloMethod")
 public class MonteCarloMethodImpl implements Optimizer {
-    private static final Random RANDOM = new Random();
     private static final int MAX_ITERS = 1000000;
     private static final double TEMPERATURE = 1000.0;
     private static final double COOLING_RATE = (1 - 1e-3);
-    private static final org.slf4j.Logger log = LoggerFactory.getLogger(MonteCarloMethodImpl.class);
 
     private final Logger logger;
+    private final PainterService painterService;
 
-    public MonteCarloMethodImpl(@Qualifier("console") Logger logger) {
+    public MonteCarloMethodImpl(@Qualifier("consoleLogger") Logger logger,
+                                @Qualifier("consolePainter") PainterService painterService) {
         this.logger = logger;
+        this.painterService = painterService;
     }
 
     @Override
-    public Vector minimize(Functional objective, ParametricFunction function, Vector initialParameters) {
+    public Vector minimize(Functional objective, ParametricFunction function, Vector initialParameters) throws InterruptedException {
         return minimize(objective, function, initialParameters, new VectorImpl(), new VectorImpl());
     }
 
     @Override
-    public Vector minimize(Functional objective, ParametricFunction function, Vector initialParameters, Vector minimumParameters) {
+    public Vector minimize(Functional objective, ParametricFunction function, Vector initialParameters, Vector minimumParameters) throws InterruptedException {
         return minimize(objective, function, initialParameters, minimumParameters, new VectorImpl());
     }
 
@@ -47,10 +48,13 @@ public class MonteCarloMethodImpl implements Optimizer {
                            @NotNull ParametricFunction function,
                            Vector initialParameters,
                            Vector minimumParameters,
-                           Vector maximumParameters) {
+                           Vector maximumParameters) throws InterruptedException {
         double currentTemperature = TEMPERATURE;
         Vector currentParameters = new VectorImpl(initialParameters);
         double bestFunctionalValue = functional.value(function.bind(currentParameters));
+
+        var minValue = Collections.min(minimumParameters);
+        var maxValue = Collections.max(maximumParameters);
 
         int currentIteration = 0;
         // Останавливаемся если температура упала до критической или достигли максимального количества итераций
@@ -66,10 +70,14 @@ public class MonteCarloMethodImpl implements Optimizer {
             // Снижение температуры
             currentTemperature *= COOLING_RATE;
 
-            System.out.println();
-            logger.log(LoggerStatus.TRACE, "iteration:\t" + currentIteration);
-            logger.log(LoggerStatus.TRACE, "temperature:\t" + currentTemperature);
-            logger.log(LoggerStatus.TRACE, "parameters:\t" + currentParameters);
+            if (!(minimumParameters.isEmpty() || maximumParameters.isEmpty())) {
+                painterService.paint((int) (maxValue - minValue), currentParameters);
+            } else {
+                System.out.println();
+                logger.log(LoggerStatus.TRACE, "iteration:\t" + currentIteration);
+                logger.log(LoggerStatus.TRACE, "temperature:\t" + currentTemperature);
+                logger.log(LoggerStatus.TRACE, "parameters:\t" + currentParameters);
+            }
 
             currentIteration++;
         }
@@ -92,12 +100,14 @@ public class MonteCarloMethodImpl implements Optimizer {
             double initialStepSize = (maximumParameters.get(i) - minimumParameters.get(i)) / 10;
             var stepSize = updateStepSize(initialStepSize, currentTemperature);
 
-            logger.log(LoggerStatus.INFO, "stepSize:\t" + stepSize);
+            //FIXME Логирование (убрано для отображения графика сходимости)
+//            logger.log(LoggerStatus.INFO, "stepSize:\t" + stepSize);
 
             double randomShift = (Math.random() - 0.5) * 2 * stepSize;
             double newValue = parameters.get(i) + randomShift;
 
-            logger.log(LoggerStatus.INFO, "newValue:\t" + newValue);
+            //FIXME Логирование (убрано для отображения графика сходимости)
+//            logger.log(LoggerStatus.INFO, "newValue:\t" + newValue);
 
             // Применяем ограничение
             newValue = Math.max(minimumParameters.get(i), Math.min(newValue, maximumParameters.get(i)));
@@ -107,10 +117,25 @@ public class MonteCarloMethodImpl implements Optimizer {
         return neighborSolution;
     }
 
+    /**
+     * Обновление шага смещения в зависимости от текущей температуры
+     *
+     * @param initialStepSize    начальное значение шага смещения
+     * @param currentTemperature текущая температура
+     * @return новое значение шага смещения
+     */
     private double updateStepSize(double initialStepSize, double currentTemperature) {
         return initialStepSize * (currentTemperature / MonteCarloMethodImpl.TEMPERATURE);
     }
 
+    /**
+     * Oпределения вероятности принятия нового решения на основе его оценки по сравнению с текущим решением
+     *
+     * @param bestFunctionalValue лучшее значение функционала
+     * @param newFunctionalValue  новое значение функционала
+     * @param temperature         текушая температура
+     * @return вероятность принятия нового решения
+     */
     private double acceptanceProbability(double bestFunctionalValue, double newFunctionalValue, double temperature) {
         return (newFunctionalValue < bestFunctionalValue)
                 ? 1.0

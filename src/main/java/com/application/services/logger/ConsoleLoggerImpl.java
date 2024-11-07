@@ -9,7 +9,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 @Service
-@Qualifier("console")
+@Qualifier("consoleLogger")
 public class ConsoleLoggerImpl implements Logger {
     public static final String RESET = "\u001B[0m";
     public static final String RED = "\u001B[31m";

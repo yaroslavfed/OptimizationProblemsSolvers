@@ -24,7 +24,7 @@ import java.util.List;
 @SpringBootApplication
 public class OptimizationProblemsSolverApplication {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
         SpringApplication.run(OptimizationProblemsSolverApplication.class, args);
         Logger logger = context.getBean(Logger.class);
