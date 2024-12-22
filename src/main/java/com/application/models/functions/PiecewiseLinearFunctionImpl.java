@@ -1,5 +1,6 @@
 package com.application.models.functions;
 
+import com.application.data.Bounds;
 import com.application.data.Point;
 import com.application.models.functions.io.DifferentiableFunction;
 import com.application.models.functions.io.Function;
@@ -44,8 +45,8 @@ public class PiecewiseLinearFunctionImpl implements ParametricFunction {
 
             try {
                 var bounds = findBounds(vector.getFirst());
-                return bounds.start.y()
-                        + (bounds.end.y() - bounds.start.y()) / (bounds.end.x() - bounds.start.x()) * (vector.getFirst() - bounds.start.x());
+                return bounds.start().y()
+                        + (bounds.end().y() - bounds.start().y()) / (bounds.end().x() - bounds.start().x()) * (vector.getFirst() - bounds.start().x());
             } catch (Exception exception) {
                 if (vector.getFirst() < this.grid.getFirst())
                     return this.parameters.getFirst(); // Возвращаем значение в первой точке
@@ -67,10 +68,10 @@ public class PiecewiseLinearFunctionImpl implements ParametricFunction {
 
             try {
                 var bounds = findBounds(vector.getFirst());
-                double xDistance = bounds.end.x() - bounds.start.x();
+                var xDistance = bounds.end().x() - bounds.start().x();
 
-                res.set(bounds.position - 1, (bounds.end.x() - vector.getFirst()) / xDistance);
-                res.set(bounds.position, (vector.getFirst() - bounds.start.x()) / xDistance);
+                res.set(bounds.position() - 1, (bounds.end().x() - vector.getFirst()) / xDistance);
+                res.set(bounds.position(), (vector.getFirst() - bounds.start().x()) / xDistance);
 
                 return res;
             } catch (Exception exception) {
@@ -93,9 +94,6 @@ public class PiecewiseLinearFunctionImpl implements ParametricFunction {
             } catch (Exception exception) {
                 throw new IllegalArgumentException(exception.getMessage() + "\nТочка находится вне заданной области.");
             }
-        }
-
-        record Bounds(int position, Point start, Point end) {
         }
     }
 }

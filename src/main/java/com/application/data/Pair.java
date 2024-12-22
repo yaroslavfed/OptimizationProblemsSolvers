@@ -1,5 +1,8 @@
 package com.application.data;
 
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+
 /**
  * Represents a pair of values.
  *
@@ -16,6 +19,8 @@ public record Pair<T, U>(T first, U second) {
         return first.equals(pair.first) && second.equals(pair.second);
     }
 
+    @NotNull
+    @Contract(pure = true)
     @Override
     public String toString() {
         return "Pair{" + "first=" + first + ", second=" + second + '}';

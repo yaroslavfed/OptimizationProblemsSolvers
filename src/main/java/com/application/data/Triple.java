@@ -1,5 +1,8 @@
 package com.application.data;
 
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+
 /**
  * Represents a triple of values.
  *
@@ -19,6 +22,8 @@ public record Triple<T, U, V>(T first, U second, V third) {
                 third.equals(triple.third);
     }
 
+    @NotNull
+    @Contract(pure = true)
     @Override
     public String toString() {
         return "Triple{" + "first=" + first + ", second=" + second + ", third=" + third + '}';
