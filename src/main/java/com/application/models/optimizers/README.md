@@ -12,6 +12,6 @@
 
 ### `ConjugateGradientMethodImpl`
 Использует generic с более глубоким наследованием, а именно требует наследования от `DifferentiableFunctional`
-~~~~
+
 ### `GaussNewtonAlgorithmImpl`
-Так же использует generic с более глубоким наследованием, требуя наследования от `LeastSquaresFunctional`~~~~
+Так же использует generic с более глубоким наследованием, требуя наследования от `LeastSquaresFunctional`
