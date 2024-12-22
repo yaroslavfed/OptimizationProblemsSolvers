@@ -1,7 +1,7 @@
 package com.application.models.functionals.io;
 
 import com.application.models.functions.io.Function;
-import com.application.dto.Point;
+import com.application.data.Point;
 
 import java.util.ArrayList;
 

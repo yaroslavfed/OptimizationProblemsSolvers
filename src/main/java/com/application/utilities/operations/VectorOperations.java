@@ -1,4 +1,4 @@
-package com.application.utilities;
+package com.application.utilities.operations;
 
 import com.application.models.vectors.VectorImpl;
 import com.application.models.vectors.io.Vector;
@@ -76,6 +76,16 @@ public class VectorOperations {
         Vector result = new VectorImpl();
         for (int i = 0; i < vector.size(); i++) {
             result.set(i, number * vector.get(i));
+        }
+        return result;
+    }
+
+    @NotNull
+    public static Vector copyVector(@NotNull Vector vector) {
+        Vector result = new VectorImpl();
+        for (int i = 0; i < vector.size(); i++) {
+            result.add(0.0);
+            result.set(i, vector.get(i));
         }
         return result;
     }

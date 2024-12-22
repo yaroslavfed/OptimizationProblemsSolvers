@@ -1,8 +1,9 @@
 package com.application.services.painter;
 
-import com.application.utilities.Spot;
+import com.application.data.Spot;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -17,6 +18,7 @@ import java.util.stream.Stream;
 public class ConsolePainterServiceImpl implements PainterService {
     private final List<Double> pointsList = new ArrayList<>();
 
+    @Async
     @Override
     public void paint(int axisLength, @NotNull List<Double> points) throws InterruptedException {
         // Докидываем новую точку в список
@@ -27,6 +29,7 @@ public class ConsolePainterServiceImpl implements PainterService {
         double scale = 1.0;
         // Составляем график из точек
         var graph = drawAxisWithPoints(axisLength, origin, pointsList, scale);
+
         System.out.print("\rСчитаем:\t" + graph);
     }
 

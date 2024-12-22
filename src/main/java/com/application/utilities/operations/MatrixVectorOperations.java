@@ -1,4 +1,4 @@
-package com.application.utilities;
+package com.application.utilities.operations;
 
 import com.application.models.matrices.io.Matrix;
 import com.application.models.vectors.VectorImpl;

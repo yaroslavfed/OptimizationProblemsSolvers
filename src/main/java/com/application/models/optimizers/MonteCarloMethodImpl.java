@@ -1,16 +1,11 @@
 package com.application.models.optimizers;
 
-import com.application.enums.LoggerStatus;
 import com.application.models.optimizers.io.Optimizer;
 import com.application.models.functionals.io.Functional;
 import com.application.models.functions.io.ParametricFunction;
 import com.application.models.vectors.io.Vector;
 import com.application.models.vectors.VectorImpl;
-import com.application.services.logger.Logger;
-import com.application.services.painter.PainterService;
 import org.jetbrains.annotations.NotNull;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 
@@ -18,33 +13,36 @@ import java.util.Collections;
  * <p>Универсальный метод оптимизации</p>
  * Метод имитации отжига
  */
-@Service("monteCarloMethod")
-public class MonteCarloMethodImpl implements Optimizer {
+
+public class MonteCarloMethodImpl<TFunctional extends Functional> implements Optimizer<TFunctional> {
     private static final int MAX_ITERS = 1000000;
     private static final double TEMPERATURE = 1000.0;
     private static final double COOLING_RATE = (1 - 1e-3);
 
-    private final Logger logger;
-    private final PainterService painterService;
-
-    public MonteCarloMethodImpl(@Qualifier("consoleLogger") Logger logger,
-                                @Qualifier("consolePainter") PainterService painterService) {
-        this.logger = logger;
-        this.painterService = painterService;
+    @Override
+    public Vector minimize(TFunctional objective, ParametricFunction function, Vector initialParameters) throws InterruptedException {
+        return minimize(
+                objective,
+                function,
+                initialParameters,
+                new VectorImpl(),
+                new VectorImpl()
+        );
     }
 
     @Override
-    public Vector minimize(Functional objective, ParametricFunction function, Vector initialParameters) throws InterruptedException {
-        return minimize(objective, function, initialParameters, new VectorImpl(), new VectorImpl());
+    public Vector minimize(TFunctional objective, ParametricFunction function, Vector initialParameters, Vector minimumParameters) throws InterruptedException {
+        return minimize(
+                objective,
+                function,
+                initialParameters,
+                minimumParameters,
+                new VectorImpl()
+        );
     }
 
     @Override
-    public Vector minimize(Functional objective, ParametricFunction function, Vector initialParameters, Vector minimumParameters) throws InterruptedException {
-        return minimize(objective, function, initialParameters, minimumParameters, new VectorImpl());
-    }
-
-    @Override
-    public Vector minimize(@NotNull Functional functional,
+    public Vector minimize(@NotNull TFunctional functional,
                            @NotNull ParametricFunction function,
                            Vector initialParameters,
                            Vector minimumParameters,
@@ -70,14 +68,15 @@ public class MonteCarloMethodImpl implements Optimizer {
             // Снижение температуры
             currentTemperature *= COOLING_RATE;
 
-            if (!(minimumParameters.isEmpty() || maximumParameters.isEmpty())) {
-                painterService.paint((int) (maxValue - minValue), currentParameters);
-            } else {
-                System.out.println();
-                logger.log(LoggerStatus.TRACE, "iteration:\t" + currentIteration);
-                logger.log(LoggerStatus.TRACE, "temperature:\t" + currentTemperature);
-                logger.log(LoggerStatus.TRACE, "parameters:\t" + currentParameters);
-            }
+            // FIXME необходима реализация кастомной обертки внедрения зависимостей или переработка регистрации сервисов в IoC
+//            if (!(minimumParameters.isEmpty() || maximumParameters.isEmpty())) {
+//                painterService.paint((int) (maxValue - minValue), currentParameters);
+//            } else {
+//                System.out.println();
+//                logger.log(LoggerStatus.TRACE, "iteration:\t" + currentIteration);
+//                logger.log(LoggerStatus.TRACE, "temperature:\t" + currentTemperature);
+//                logger.log(LoggerStatus.TRACE, "parameters:\t" + currentParameters);
+//            }
 
             currentIteration++;
         }

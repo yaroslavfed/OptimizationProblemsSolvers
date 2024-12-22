@@ -20,21 +20,26 @@ import org.springframework.stereotype.Component;
  * </ul>
  */
 @Component("lineFunction")
-public class LineFunctionImpl implements ParametricFunction {
+public class LinearFunctionImpl implements ParametricFunction {
     @Override
     public Function bind(@NotNull Vector parameters) {
+        if (parameters.isEmpty())
+            throw new IllegalArgumentException("Список параметров пуст.");
         return new InternalLineFunction(parameters);
     }
 
     record InternalLineFunction(Vector parameters) implements DifferentiableFunction {
         @Override
         public double value(@NotNull Vector vector) throws IllegalArgumentException {
+            if (this.parameters.isEmpty())
+                throw new IllegalArgumentException("Параметры не заданы.");
+
             if (vector.size() != this.parameters.size() - 1)
                 throw new IllegalArgumentException("Размерность точки должна быть на единицу меньше числа параметров.");
 
             var res = this.parameters.getFirst();
             for (int i = 0; i < vector.size(); i++)
-                res += this.parameters.get(i + 1) * this.parameters.get(i);
+                res += this.parameters.get(i + 1) * vector.get(i);
 
             return res;
         }
@@ -50,13 +55,17 @@ public class LineFunctionImpl implements ParametricFunction {
         @NotNull
         @Override
         public Vector gradient(@NotNull Vector vector) throws IllegalArgumentException {
+            if (this.parameters.isEmpty())
+                throw new IllegalArgumentException("Параметры не заданы.");
+
             if (vector.size() != this.parameters.size() - 1)
                 throw new IllegalArgumentException("Размерность точки должна быть на единицу меньше числа параметров.");
 
-            Vector gradient = new VectorImpl(vector.size());
+            Vector gradient = new VectorImpl();
+            gradient.add(1.0);
 
-            for (int i = 0; i < gradient.size(); i++)
-                gradient.set(i, this.parameters.get(i + 1));
+            for (int i = 0; i < this.parameters.size() - 1; i++)
+                gradient.add(vector.get(i));
 
             return gradient;
         }

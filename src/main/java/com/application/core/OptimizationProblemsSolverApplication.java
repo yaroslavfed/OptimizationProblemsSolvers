@@ -4,7 +4,7 @@ import com.application.enums.LoggerStatus;
 import com.application.enums.OptimizerType;
 import com.application.models.functionals.io.Functional;
 import com.application.models.functions.io.ParametricFunction;
-import com.application.dto.Point;
+import com.application.data.Point;
 import com.application.models.optimizers.io.Optimizer;
 import com.application.models.vectors.VectorImpl;
 import com.application.models.vectors.io.Vector;

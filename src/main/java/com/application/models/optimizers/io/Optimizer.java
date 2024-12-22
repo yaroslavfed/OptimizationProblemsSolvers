@@ -4,7 +4,7 @@ import com.application.models.functionals.io.Functional;
 import com.application.models.functions.io.ParametricFunction;
 import com.application.models.vectors.io.Vector;
 
-public interface Optimizer {
+public interface Optimizer<TFunctional extends Functional> {
     /**
      * Оптимизация решения с помощью минимизации функционала
      * @param objective минимизируемый функционал
@@ -12,7 +12,7 @@ public interface Optimizer {
      * @param initialParameters вектор начальных параметров
      * @return вектор результата минимизации
      */
-    Vector minimize(Functional objective,
+    Vector minimize(TFunctional objective,
                     ParametricFunction function,
                     Vector initialParameters) throws InterruptedException;
 
@@ -24,7 +24,7 @@ public interface Optimizer {
      * @param minimumParameters вектор минимальных параметров
      * @return вектор результата минимизации
      */
-    Vector minimize(Functional objective,
+    Vector minimize(TFunctional objective,
                     ParametricFunction function,
                     Vector initialParameters,
                     Vector minimumParameters) throws InterruptedException;
@@ -38,7 +38,7 @@ public interface Optimizer {
      * @param maximumParameters вектор максимальных параметров параметров
      * @return вектор результата минимизации
      */
-    Vector minimize(Functional objective,
+    Vector minimize(TFunctional objective,
                     ParametricFunction function,
                     Vector initialParameters,
                     Vector minimumParameters,

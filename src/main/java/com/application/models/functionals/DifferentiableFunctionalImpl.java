@@ -1,6 +1,6 @@
 package com.application.models.functionals;
 
-import com.application.dto.Point;
+import com.application.data.Point;
 import com.application.models.functionals.io.DifferentiableFunctional;
 import com.application.models.functions.io.Function;
 import com.application.models.vectors.io.Vector;

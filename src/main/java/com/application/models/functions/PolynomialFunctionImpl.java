@@ -21,19 +21,24 @@ import org.springframework.stereotype.Component;
 public class PolynomialFunctionImpl implements ParametricFunction {
     @Override
     public Function bind(Vector parameters) {
+        if (parameters.isEmpty())
+            throw new IllegalArgumentException("Список параметров пуст.");
         return new InternalPolynomialFunction(parameters);
     }
 
     record InternalPolynomialFunction(Vector parameters) implements Function {
         @Override
-        public double value(@NotNull Vector point) throws IllegalArgumentException {
-            if (point.size() != 1)
-                throw new IllegalArgumentException("Рвзмерность точки должна быть равна 1");
+        public double value(@NotNull Vector vector) throws IllegalArgumentException {
+            if (this.parameters.isEmpty())
+                throw new IllegalArgumentException("Параметры не заданы.");
 
-            var result = parameters.getFirst();
+            if (vector.size() != 1)
+                throw new IllegalArgumentException("Размерность точки должна быть равна 1.");
 
-            for (int i = 1; i < parameters.size(); i++)
-                result += parameters.get(i) * Math.pow(point.getFirst(), i);
+            var result = this.parameters.getFirst();
+
+            for (int i = 1; i < this.parameters.size(); i++)
+                result += this.parameters.get(i) * Math.pow(vector.getFirst(), i);
 
             return result;
         }

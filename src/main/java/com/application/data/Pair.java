@@ -1,4 +1,4 @@
-package com.application.utilities;
+package com.application.data;
 
 /**
  * Represents a pair of values.

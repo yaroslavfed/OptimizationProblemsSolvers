@@ -2,7 +2,7 @@ package com.application.models.functionals;
 
 import com.application.models.functionals.io.Functional;
 import com.application.models.functions.io.Function;
-import com.application.dto.Point;
+import com.application.data.Point;
 import com.application.models.vectors.VectorImpl;
 import org.springframework.stereotype.Component;
 

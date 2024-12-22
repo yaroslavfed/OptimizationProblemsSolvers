@@ -1,7 +1,8 @@
-package com.application.utilities;
+package com.application.utilities.operations;
 
 import com.application.models.matrices.MatrixImpl;
 import com.application.models.matrices.io.Matrix;
+import com.application.data.Triple;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
@@ -72,6 +73,20 @@ public class MatrixOperations {
         }
 
         return matrix;
+    }
+
+    @NotNull
+    public static Matrix Transpose(@NotNull Matrix mat) {
+        int n = mat.size();
+        int m = mat.getFirst().size();
+        Matrix res = new MatrixImpl();
+        for (int i = 0; i < m; i++) {
+            res.add(new ArrayList<>());
+            for (int j = 0; j < n; j++) {
+                res.get(i).add(mat.get(j).get(i));
+            }
+        }
+        return res;
     }
 }
 

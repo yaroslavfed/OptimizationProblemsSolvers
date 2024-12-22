@@ -1,4 +1,4 @@
-package com.application.utilities;
+package com.application.data;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
