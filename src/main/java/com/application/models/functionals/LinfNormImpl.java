@@ -5,6 +5,7 @@ import com.application.models.functionals.io.Functional;
 import com.application.models.functions.io.Function;
 import com.application.models.vectors.VectorImpl;
 import com.application.models.vectors.io.Vector;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,7 +15,7 @@ public class LinfNormImpl implements Functional {
     private final List<Vector> points;
     private final Vector values;
 
-    public LinfNormImpl(List<Vector> points, Vector value) {
+    public LinfNormImpl(@NotNull List<Vector> points, @NotNull Vector value) {
         if (points.size() != value.size())
             throw new IllegalArgumentException("Различные размерности.");
 

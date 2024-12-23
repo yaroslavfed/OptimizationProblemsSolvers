@@ -8,7 +8,6 @@ import com.application.models.vectors.io.Vector;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Stack;
 
@@ -72,7 +71,6 @@ public class IntegralNormImpl implements Functional {
                 double weight = gaussWeights[i];
                 double point = 0.5 * ((this.a.get(depth) - this.b.get(depth)) * node + this.a.get(depth) + this.b.get(depth));
 
-                assert false;
                 currentPoints.set(depth, point);
                 double newProduct = currentProduct * weight;
 
