@@ -8,11 +8,9 @@ import com.application.models.functions.io.ParametricFunction;
 import com.application.models.vectors.VectorImpl;
 import com.application.models.vectors.io.Vector;
 import org.jetbrains.annotations.NotNull;
-import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 
-@Component("piecewiseLinearFunction")
 public class PiecewiseLinearFunctionImpl implements ParametricFunction {
     private final Vector grid;
 

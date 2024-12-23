@@ -7,11 +7,9 @@ import com.application.models.functions.io.Function;
 import com.application.models.functions.io.ParametricFunction;
 import com.application.models.vectors.io.Vector;
 import org.jetbrains.annotations.NotNull;
-import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 
-@Component("splineFunction")
 public class SplineFunctionImpl implements ParametricFunction {
     private final Vector grid;
 

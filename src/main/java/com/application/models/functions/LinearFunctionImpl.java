@@ -6,7 +6,6 @@ import com.application.models.functions.io.ParametricFunction;
 import com.application.models.vectors.VectorImpl;
 import com.application.models.vectors.io.Vector;
 import org.jetbrains.annotations.NotNull;
-import org.springframework.stereotype.Component;
 
 /**
  * Вычисляет значение линейного выражения:
@@ -19,7 +18,6 @@ import org.springframework.stereotype.Component;
  *   <li><code>x</code> - массив значений переменных {@code x[1], x[2], ..., x[n]}, соответствующих коэффициентам в {@code a}.</li>
  * </ul>
  */
-@Component("lineFunction")
 public class LinearFunctionImpl implements ParametricFunction {
     @Override
     public Function bind(@NotNull Vector parameters) {

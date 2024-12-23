@@ -17,6 +17,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import java.lang.instrument.IllegalClassFormatException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -24,37 +25,8 @@ import java.util.List;
 @SpringBootApplication
 public class OptimizationProblemsSolverApplication {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, IllegalClassFormatException {
         ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
         SpringApplication.run(OptimizationProblemsSolverApplication.class, args);
-        Logger logger = context.getBean(Logger.class);
-
-        Functional functional = context.getBean("functional", Functional.class);
-        ParametricFunction function = context.getBean("polynomialFunction", ParametricFunction.class);
-
-        OptimizersService optimizersService = context.getBean(OptimizersService.class);
-        Optimizer optimizer = optimizersService.getOptimizer(context, OptimizerType.MONTE_CARLO_METHOD);
-
-        Vector initialParameters = new VectorImpl(List.of(0.0));
-        Vector minimumParameters = new VectorImpl(List.of(-10.0));
-        Vector maximumParameters = new VectorImpl(List.of(10.0));
-
-        ArrayList<Point> points = initializePoints();
-
-        functional.setPoints(points);
-        var result = optimizer.minimize(functional, function, initialParameters, minimumParameters, maximumParameters);
-
-        System.out.println();
-        logger.log(LoggerStatus.TRACE, String.format("result:\t\t%s", result));
-    }
-
-    @NotNull
-    private static ArrayList<Point> initializePoints() {
-        return new ArrayList<>(Arrays.asList(
-                new Point(-1, 21),
-                new Point(1.5, 7.25),
-                new Point(3, 5),
-                new Point(7, 21)
-        ));
     }
 }

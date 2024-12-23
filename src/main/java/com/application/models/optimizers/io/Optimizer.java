@@ -4,6 +4,8 @@ import com.application.models.functionals.io.Functional;
 import com.application.models.functions.io.ParametricFunction;
 import com.application.models.vectors.io.Vector;
 
+import java.lang.instrument.IllegalClassFormatException;
+
 public interface Optimizer<TFunctional extends Functional> {
     /**
      * Оптимизация решения с помощью минимизации функционала
@@ -14,7 +16,7 @@ public interface Optimizer<TFunctional extends Functional> {
      */
     Vector minimize(TFunctional objective,
                     ParametricFunction function,
-                    Vector initialParameters) throws InterruptedException;
+                    Vector initialParameters) throws InterruptedException, IllegalClassFormatException;
 
     /**
      * Оптимизация решения с помощью минимизации функционала
@@ -27,7 +29,7 @@ public interface Optimizer<TFunctional extends Functional> {
     Vector minimize(TFunctional objective,
                     ParametricFunction function,
                     Vector initialParameters,
-                    Vector minimumParameters) throws InterruptedException;
+                    Vector minimumParameters) throws InterruptedException, IllegalClassFormatException;
 
     /**
      * Оптимизация решения с помощью минимизации функционала
@@ -42,5 +44,5 @@ public interface Optimizer<TFunctional extends Functional> {
                     ParametricFunction function,
                     Vector initialParameters,
                     Vector minimumParameters,
-                    Vector maximumParameters) throws InterruptedException;
+                    Vector maximumParameters) throws InterruptedException, IllegalClassFormatException;
 }

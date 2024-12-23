@@ -12,6 +12,8 @@ import com.application.utilities.operations.VectorOperations;
 import com.application.utilities.solvers.SlaeSolver;
 import org.jetbrains.annotations.NotNull;
 
+import java.lang.instrument.IllegalClassFormatException;
+
 public class GaussNewtonAlgorithmImpl<TFunctional extends LeastSquaresFunctional> implements Optimizer<TFunctional> {
     private final double eps;
     private final int maxIterations;
@@ -22,7 +24,7 @@ public class GaussNewtonAlgorithmImpl<TFunctional extends LeastSquaresFunctional
     }
 
     @Override
-    public Vector minimize(TFunctional objective, ParametricFunction function, Vector initialParameters) {
+    public Vector minimize(TFunctional objective, ParametricFunction function, Vector initialParameters) throws IllegalClassFormatException {
         return minimize(
                 objective,
                 function,
@@ -33,7 +35,7 @@ public class GaussNewtonAlgorithmImpl<TFunctional extends LeastSquaresFunctional
     }
 
     @Override
-    public Vector minimize(TFunctional objective, ParametricFunction function, Vector initialParameters, Vector minimumParameters) {
+    public Vector minimize(TFunctional objective, ParametricFunction function, Vector initialParameters, Vector minimumParameters) throws IllegalClassFormatException {
         return minimize(
                 objective,
                 function,
@@ -44,7 +46,7 @@ public class GaussNewtonAlgorithmImpl<TFunctional extends LeastSquaresFunctional
     }
 
     @Override
-    public Vector minimize(@NotNull TFunctional objective, @NotNull ParametricFunction function, Vector initialParameters, Vector minimumParameters, Vector maximumParameters) {
+    public Vector minimize(@NotNull TFunctional objective, @NotNull ParametricFunction function, Vector initialParameters, Vector minimumParameters, Vector maximumParameters) throws IllegalClassFormatException {
         var currentParameters = VectorOperations.copyVector(initialParameters);
         var currentFunction = function.bind(currentParameters);
         var currentValue = objective.value(currentFunction);

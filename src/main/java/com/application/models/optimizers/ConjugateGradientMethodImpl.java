@@ -9,6 +9,8 @@ import com.application.utilities.OptimizersUtilities;
 import com.application.utilities.operations.VectorOperations;
 import org.jetbrains.annotations.NotNull;
 
+import java.lang.instrument.IllegalClassFormatException;
+
 /**
  * Метод сопряжённых градиентов
  *
@@ -26,7 +28,7 @@ public class ConjugateGradientMethodImpl<TFunctional extends DifferentiableFunct
     }
 
     @Override
-    public Vector minimize(TFunctional objective, ParametricFunction function, Vector initialParameters) {
+    public Vector minimize(TFunctional objective, ParametricFunction function, Vector initialParameters) throws IllegalClassFormatException {
         return minimize(
                 objective,
                 function,
@@ -37,7 +39,7 @@ public class ConjugateGradientMethodImpl<TFunctional extends DifferentiableFunct
     }
 
     @Override
-    public Vector minimize(TFunctional objective, ParametricFunction function, Vector initialParameters, Vector minimumParameters) {
+    public Vector minimize(TFunctional objective, ParametricFunction function, Vector initialParameters, Vector minimumParameters) throws IllegalClassFormatException {
         return minimize(
                 objective,
                 function,
@@ -48,7 +50,7 @@ public class ConjugateGradientMethodImpl<TFunctional extends DifferentiableFunct
     }
 
     @Override
-    public Vector minimize(@NotNull TFunctional objective, @NotNull ParametricFunction function, Vector initialParameters, Vector minimumParameters, Vector maximumParameters) {
+    public Vector minimize(@NotNull TFunctional objective, @NotNull ParametricFunction function, Vector initialParameters, Vector minimumParameters, Vector maximumParameters) throws IllegalClassFormatException {
         var currentParameters = VectorOperations.copyVector(initialParameters);
         var currentFunction = function.bind(currentParameters);
         var currentGradient = objective.gradient(currentFunction);
