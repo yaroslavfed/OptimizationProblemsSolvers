@@ -13,7 +13,7 @@ import java.util.Arrays;
 public class SplineFunctionImpl implements ParametricFunction {
     private final Vector grid;
 
-    public SplineFunctionImpl(Vector grid) {
+    public SplineFunctionImpl(@NotNull Vector grid) {
         if (grid.size() < 2)
             throw new IllegalArgumentException("Задано слишком мало точек.");
         this.grid = grid;

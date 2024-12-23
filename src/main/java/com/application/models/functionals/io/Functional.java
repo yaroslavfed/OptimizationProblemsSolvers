@@ -1,7 +1,7 @@
 package com.application.models.functionals.io;
 
-import com.application.models.functions.io.Function;
 import com.application.data.Point;
+import com.application.models.functions.io.Function;
 
 import java.util.ArrayList;
 
@@ -18,6 +18,7 @@ public interface Functional {
 
     /**
      * Значение функционала от функции
+     *
      * @param function исходная функция
      * @return значение функционала
      */

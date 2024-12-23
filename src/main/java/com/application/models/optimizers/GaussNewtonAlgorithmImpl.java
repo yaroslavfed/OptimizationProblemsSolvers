@@ -2,12 +2,12 @@ package com.application.models.optimizers;
 
 import com.application.models.functionals.io.LeastSquaresFunctional;
 import com.application.models.functions.io.ParametricFunction;
+import com.application.models.optimizers.io.Optimizer;
 import com.application.models.vectors.VectorImpl;
 import com.application.models.vectors.io.Vector;
-import com.application.models.optimizers.io.Optimizer;
+import com.application.utilities.OptimizersUtilities;
 import com.application.utilities.operations.MatrixOperations;
 import com.application.utilities.operations.MatrixVectorOperations;
-import com.application.utilities.OptimizersUtilities;
 import com.application.utilities.operations.VectorOperations;
 import com.application.utilities.solvers.SlaeSolver;
 import org.jetbrains.annotations.NotNull;

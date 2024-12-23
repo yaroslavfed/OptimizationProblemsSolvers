@@ -9,8 +9,9 @@ import java.lang.instrument.IllegalClassFormatException;
 public interface Optimizer<TFunctional extends Functional> {
     /**
      * Оптимизация решения с помощью минимизации функционала
-     * @param objective минимизируемый функционал
-     * @param function параметрическая функция, функционал которой будем минимизировать
+     *
+     * @param objective         минимизируемый функционал
+     * @param function          параметрическая функция, функционал которой будем минимизировать
      * @param initialParameters вектор начальных параметров
      * @return вектор результата минимизации
      */
@@ -20,8 +21,9 @@ public interface Optimizer<TFunctional extends Functional> {
 
     /**
      * Оптимизация решения с помощью минимизации функционала
-     * @param objective минимизируемый функционал
-     * @param function параметрическая функция, функционал которой будем минимизировать
+     *
+     * @param objective         минимизируемый функционал
+     * @param function          параметрическая функция, функционал которой будем минимизировать
      * @param initialParameters вектор начальных параметров
      * @param minimumParameters вектор минимальных параметров
      * @return вектор результата минимизации
@@ -33,8 +35,9 @@ public interface Optimizer<TFunctional extends Functional> {
 
     /**
      * Оптимизация решения с помощью минимизации функционала
-     * @param objective минимизируемый функционал
-     * @param function параметрическая функция, функционал которой будем минимизировать
+     *
+     * @param objective         минимизируемый функционал
+     * @param function          параметрическая функция, функционал которой будем минимизировать
      * @param initialParameters вектор начальных параметров
      * @param minimumParameters вектор минимальных параметров
      * @param maximumParameters вектор максимальных параметров параметров
