@@ -8,6 +8,7 @@ import com.application.models.vectors.io.Vector;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Stack;
 
@@ -51,7 +52,7 @@ public class IntegralNormImpl implements Functional {
         };
 
         Stack<State> stack = new Stack<>();
-        List<Double> points = new ArrayList<>(dim);
+        List<Double> points = new ArrayList<>(Collections.nCopies(dim, 0.0));
         stack.push(new State(0, 1.0, points));
 
         while (!stack.isEmpty()) {
