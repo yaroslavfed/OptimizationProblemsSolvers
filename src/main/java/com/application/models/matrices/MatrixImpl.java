@@ -50,7 +50,7 @@ public class MatrixImpl extends ArrayList<List<Double>> implements Matrix {
      *
      * @param baseMatrix базовая матрица из списка списков
      */
-    public MatrixImpl(@NotNull List<List<Double>> baseMatrix) {
+    public MatrixImpl(@NotNull ArrayList<ArrayList<Double>> baseMatrix) {
         super(baseMatrix.size());
 
         this.n = baseMatrix.size();

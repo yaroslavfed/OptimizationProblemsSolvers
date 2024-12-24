@@ -13,6 +13,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.lang.instrument.IllegalClassFormatException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class LTwoNormImpl implements DifferentiableFunctional, LeastSquaresFunctional {
@@ -73,7 +74,8 @@ public class LTwoNormImpl implements DifferentiableFunctional, LeastSquaresFunct
             throw new IllegalClassFormatException("Неконсистентный формат функционала. Требуется DifferentiableFunctional, а получен " + function.getClass().getName());
 
         int grad = parameters.gradient(this.points.getFirst()).size();
-        var gradient = new VectorImpl(new ArrayList<>(grad));
+        var gradient = new VectorImpl();
+        gradient.addAll(Collections.nCopies(grad, 0.0));
 
         for (int i = 0; i < this.points.size(); i++) {
             double value = function.value(this.points.get(i));
@@ -81,7 +83,7 @@ public class LTwoNormImpl implements DifferentiableFunctional, LeastSquaresFunct
             var functionGradient = parameters.gradient(this.points.get(i));
 
             for (int j = 0; j < grad; j++)
-                gradient.set(j, 2.0 * diff * functionGradient.get(j));
+                gradient.set(j, gradient.get(j) + 2.0 * diff * functionGradient.get(j));
         }
 
         return gradient;

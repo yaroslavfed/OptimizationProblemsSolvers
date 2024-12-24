@@ -17,15 +17,18 @@ public class MatrixVectorOperations {
      * @return вектор решения
      */
     @NotNull
-    public static Vector multiply(@NotNull Matrix matrix, Vector vector) {
-        Vector result = new VectorImpl();
-        for (int i = 0; i < matrix.getN(); i++) {
-            double sum = 0.0;
-            for (int j = 0; j < matrix.getM(); j++) {
-                sum += matrix.get(i).get(j) * vector.get(j);
+    public static Vector multiply(@NotNull Matrix matrix, @NotNull Vector vector) {
+        int n = matrix.size();
+        int m = vector.size();
+        Vector res = new VectorImpl();
+        for (int i = 0; i < n; i++) {
+            res.add(0.0);
+            double temp = 0.;
+            for (int j = 0; j < m; j++) {
+                temp += matrix.get(i).get(j) * vector.get(j);
             }
-            result.set(i, sum);
+            res.set(i, temp);
         }
-        return result;
+        return res;
     }
 }

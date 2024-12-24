@@ -17,13 +17,12 @@ public class VectorOperations {
      */
     @NotNull
     public static Vector subtract(@NotNull Vector vector1, @NotNull Vector vector2) {
-        if (vector1.size() != vector2.size()) {
+        if (vector1.size() != vector2.size())
             throw new IllegalArgumentException("Длины векторов не равны");
-        }
         Vector result = new VectorImpl();
-        for (int i = 0; i < vector1.size(); i++) {
-            result.set(i, vector1.get(i) - vector2.get(i));
-        }
+        for (int i = 0; i < vector1.size(); i++)
+            result.add(vector1.get(i) - vector2.get(i));
+
         return result;
     }
 
@@ -36,13 +35,12 @@ public class VectorOperations {
      */
     @NotNull
     public static Vector sum(@NotNull Vector vector1, @NotNull Vector vector2) {
-        if (vector1.size() != vector2.size()) {
+        if (vector1.size() != vector2.size())
             throw new IllegalArgumentException("Длины векторов не равны");
-        }
         Vector result = new VectorImpl();
-        for (int i = 0; i < vector1.size(); i++) {
-            result.set(i, vector1.get(i) + vector2.get(i));
-        }
+        for (int i = 0; i < vector1.size(); i++)
+            result.add(vector1.get(i) + vector2.get(i));
+
         return result;
     }
 
@@ -54,13 +52,12 @@ public class VectorOperations {
      * @return произведение векторов
      */
     public static double multiply(@NotNull Vector vector1, @NotNull Vector vector2) {
-        if (vector1.size() != vector2.size()) {
+        if (vector1.size() != vector2.size())
             throw new IllegalArgumentException("Длины векторов не равны");
-        }
         double result = 0;
-        for (int i = 0; i < vector1.size(); i++) {
+        for (int i = 0; i < vector1.size(); i++)
             result += vector1.get(i) * vector2.get(i);
-        }
+
         return result;
     }
 
@@ -74,19 +71,17 @@ public class VectorOperations {
     @NotNull
     public static Vector multiply(double number, @NotNull Vector vector) {
         Vector result = new VectorImpl();
-        for (int i = 0; i < vector.size(); i++) {
-            result.set(i, number * vector.get(i));
-        }
+        for (Double point : vector)
+            result.add(number * point);
+
         return result;
     }
 
     @NotNull
     public static Vector copyVector(@NotNull Vector vector) {
         Vector result = new VectorImpl();
-        for (int i = 0; i < vector.size(); i++) {
-            result.add(0.0);
-            result.set(i, vector.get(i));
-        }
+        result.addAll(vector);
+
         return result;
     }
 }

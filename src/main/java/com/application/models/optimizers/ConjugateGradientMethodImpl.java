@@ -3,7 +3,6 @@ package com.application.models.optimizers;
 import com.application.models.functionals.io.DifferentiableFunctional;
 import com.application.models.functions.io.ParametricFunction;
 import com.application.models.optimizers.io.Optimizer;
-import com.application.models.vectors.VectorImpl;
 import com.application.models.vectors.io.Vector;
 import com.application.utilities.OptimizersUtilities;
 import com.application.utilities.operations.VectorOperations;
@@ -33,8 +32,8 @@ public class ConjugateGradientMethodImpl<TFunctional extends DifferentiableFunct
                 objective,
                 function,
                 initialParameters,
-                new VectorImpl(),
-                new VectorImpl()
+                null,
+                null
         );
     }
 
@@ -45,7 +44,7 @@ public class ConjugateGradientMethodImpl<TFunctional extends DifferentiableFunct
                 function,
                 initialParameters,
                 minimumParameters,
-                new VectorImpl()
+                null
         );
     }
 

@@ -29,8 +29,8 @@ public class GaussNewtonAlgorithmImpl<TFunctional extends LeastSquaresFunctional
                 objective,
                 function,
                 initialParameters,
-                new VectorImpl(),
-                new VectorImpl()
+                null,
+                null
         );
     }
 
@@ -41,7 +41,7 @@ public class GaussNewtonAlgorithmImpl<TFunctional extends LeastSquaresFunctional
                 function,
                 initialParameters,
                 minimumParameters,
-                new VectorImpl()
+                null
         );
     }
 
